@@ -134,8 +134,10 @@ GameObject:
   - component: {fileID: 9475191}
   - component: {fileID: 9475190}
   - component: {fileID: 9475189}
+  - component: {fileID: 9475193}
+  - component: {fileID: 9475192}
   m_Layer: 0
-  m_Name: player_idle_0
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -229,6 +231,30 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9475192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9475188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c7297cfc113aab4a8c69fd6a9e73d35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &9475193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9475188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b6dc2e2d14ab1041a7532443429b8bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &50884803
 GameObject:
   m_ObjectHideFlags: 0
@@ -238,6 +264,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 50884804}
+  - component: {fileID: 50884805}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -260,6 +287,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &50884805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 50884803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac54b130ac79f534aa03a72a1ad8f367, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 9475188}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
