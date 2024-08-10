@@ -22,10 +22,14 @@ public class PlayerAnimatorController : MonoBehaviour
 
     private void Update()
     {
-        if(mPlayerInputController.Direction.x != 0 || mPlayerInputController.Direction.y != 0)
+        if(mPlayerInputController.Direction.x != 0)
         {
             mAnimator.SetBool("Input", true);
             mSpriteRenderer.flipX = mPlayerInputController.Direction.x < 0;
+        }
+        else if (mPlayerInputController.Direction.y != 0)
+        {
+            mAnimator.SetBool("Input", true);
         }
         else
         {
