@@ -35,6 +35,5 @@ public class PlayerAnimatorController : MonoBehaviour
         {
             mAnimator.SetBool("Input", false);
         }
-
     }
 }

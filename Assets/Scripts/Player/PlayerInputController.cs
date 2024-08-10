@@ -1,9 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerInputController : MonoBehaviour
 {
+    enum eMouseType
+    {
+        Left,
+        Right,
+        Wheel
+    }
+
+    public Action RightMouseDown;
+
     public Vector2 Direction { get { return mDirection; } private set { Direction = mDirection; } }
 
     private Vector2 mDirection;
@@ -51,5 +61,10 @@ public class PlayerInputController : MonoBehaviour
             ++mDirection.y;
         }
 
+        //Mouse
+        if (Input.GetMouseButtonDown((int)eMouseType.Right))
+        {
+            RightMouseDown?.Invoke();
+        }
     }
 }
