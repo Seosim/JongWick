@@ -34,7 +34,7 @@ public class PlayerMove : MonoBehaviour
 
         if(mRigidbody.velocity != Vector2.zero)
         {
-            mRigidbody.velocity = Vector2.Lerp(mRigidbody.velocity, Vector2.zero, 9.8f * Time.deltaTime);
+            mRigidbody.velocity = Vector2.Lerp(mRigidbody.velocity, Vector2.zero, mRigidbody.drag * Time.deltaTime);
         }
     }
 
