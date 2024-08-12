@@ -12,6 +12,7 @@ public class PlayerInputController : MonoBehaviour
         Wheel
     }
     public Action aLeftMouseDown;
+    public Action aLeftMouseUp;
     public Action aRightMouseDown;
     public Action aRKeyDown;
 
@@ -70,6 +71,10 @@ public class PlayerInputController : MonoBehaviour
         if (Input.GetMouseButtonDown((int)eMouseType.Left))
         {
             aLeftMouseDown?.Invoke();
+        }
+        if (Input.GetMouseButtonUp((int)eMouseType.Left))
+        {
+            aLeftMouseUp?.Invoke();
         }
         if (Input.GetMouseButtonDown((int)eMouseType.Right))
         {

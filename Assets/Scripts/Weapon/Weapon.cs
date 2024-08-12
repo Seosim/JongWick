@@ -13,6 +13,7 @@ public class Weapon : MonoBehaviour
     public float MaxRecoil = 0.1f;
     public float Recoil = 0.0f;
     public float RecoilRecovery = 1.0f;
+    public float FireRate = 1.0f;
 
     private SpriteRenderer mSpriteRenderer;
     private Vector2 mDirection;
@@ -21,10 +22,14 @@ public class Weapon : MonoBehaviour
     
     private float mReloadTime = 0.0f;
     private float mRecoil = 0.0f;
+    private float mFireRate = 0.0f;
+
+    private bool mbAttack = false;
 
     private void Start()
     {
-        GameManager.gameManager.player.GetComponent<PlayerInputController>().aLeftMouseDown += Shoot;
+        GameManager.gameManager.player.GetComponent<PlayerInputController>().aLeftMouseDown += StartAttack;
+        GameManager.gameManager.player.GetComponent<PlayerInputController>().aLeftMouseUp += StopAttack;
         GameManager.gameManager.player.GetComponent<PlayerInputController>().aRKeyDown += Reload;
 
         mSpriteRenderer = GetComponent<SpriteRenderer>();
@@ -51,6 +56,14 @@ public class Weapon : MonoBehaviour
             transform.rotation = Quaternion.Euler(0.0f, 0.0f, angle);
         }
 
+        //Attack
+        {
+            if(mbAttack)
+            {
+                Shoot();
+            }
+        }
+
         //Reload Timer
         {
             if(mReloadTime > 0.0f)
@@ -69,11 +82,28 @@ public class Weapon : MonoBehaviour
         {
             mRecoil = Mathf.Lerp(mRecoil, 0.0f, Time.deltaTime * RecoilRecovery);
         }
+        //Fire Rate
+        {
+            if(mFireRate > 0.0f)
+            {
+                mFireRate = Mathf.Max(mFireRate - Time.deltaTime, 0.0f);
+            }
+        }
+    }
+
+    private void StartAttack()
+    {
+        mbAttack = true;
+    }
+
+    private void StopAttack()
+    {
+        mbAttack = false;
     }
 
     private void Shoot()
     {
-        if (mRemainAmmoCount == 0 || mReloadTime != 0.0f)
+        if (mRemainAmmoCount == 0 || mReloadTime != 0.0f || mFireRate > 0.0f)
             return;
 
         foreach(GameObject obj in mAmmo)
@@ -87,6 +117,7 @@ public class Weapon : MonoBehaviour
                 bullet.Initialize(transform.position + transform.right, direction.normalized, transform.rotation);
                 --mRemainAmmoCount;
                 mRecoil = Mathf.Min(MaxRecoil, mRecoil + Recoil);
+                mFireRate = FireRate;
                 break;
             }
         }
