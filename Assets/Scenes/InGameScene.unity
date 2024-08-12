@@ -292,7 +292,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 6.9375
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -97133,9 +97133,21 @@ PrefabInstance:
       value: Weapon
       objectReference: {fileID: 0}
     - target: {fileID: 2515487550926223600, guid: e4b2f78fc809e8f4fbf5d6e35a59d64b, type: 3}
+      propertyPath: Recoil
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 2515487550926223600, guid: e4b2f78fc809e8f4fbf5d6e35a59d64b, type: 3}
       propertyPath: m_Bullet
       value: 
       objectReference: {fileID: 4847854659281711808, guid: 3b21ae6fbc607ca4a8935edf2bfef355, type: 3}
+    - target: {fileID: 2515487550926223600, guid: e4b2f78fc809e8f4fbf5d6e35a59d64b, type: 3}
+      propertyPath: MaxRecoil
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2515487550926223600, guid: e4b2f78fc809e8f4fbf5d6e35a59d64b, type: 3}
+      propertyPath: RecoilRecovery
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3309120736922045213, guid: e4b2f78fc809e8f4fbf5d6e35a59d64b, type: 3}
       propertyPath: m_Name
       value: Player

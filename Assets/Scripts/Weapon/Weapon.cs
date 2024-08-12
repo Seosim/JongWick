@@ -10,14 +10,17 @@ public class Weapon : MonoBehaviour
     [SerializeField] private GameObject m_Bullet;
     public int MaxAmmo = 12;
     public float ReloadTime = 3.0f;
+    public float MaxRecoil = 0.1f;
+    public float Recoil = 0.0f;
+    public float RecoilRecovery = 1.0f;
 
     private SpriteRenderer mSpriteRenderer;
-
     private Vector2 mDirection;
     private List<GameObject> mAmmo;
     private int mRemainAmmoCount;
     
     private float mReloadTime = 0.0f;
+    private float mRecoil = 0.0f;
 
     private void Start()
     {
@@ -61,6 +64,11 @@ public class Weapon : MonoBehaviour
                 }
             }
         }
+
+        //Recoil Recovery
+        {
+            mRecoil = Mathf.Lerp(mRecoil, 0.0f, Time.deltaTime * RecoilRecovery);
+        }
     }
 
     private void Shoot()
@@ -74,8 +82,11 @@ public class Weapon : MonoBehaviour
             {
                 obj.SetActive(true);
                 Bullet bullet = obj.GetComponent<Bullet>();
-                bullet.Initialize(transform.position + transform.right, -mDirection.normalized, transform.rotation);
+
+                Vector2 direction = -mDirection.normalized + new Vector2(UnityEngine.Random.Range(-mRecoil, mRecoil), UnityEngine.Random.Range(-mRecoil, mRecoil));
+                bullet.Initialize(transform.position + transform.right, direction.normalized, transform.rotation);
                 --mRemainAmmoCount;
+                mRecoil = Mathf.Min(MaxRecoil, mRecoil + Recoil);
                 break;
             }
         }
