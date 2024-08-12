@@ -13,6 +13,7 @@ public class PlayerInputController : MonoBehaviour
     }
     public Action aLeftMouseDown;
     public Action aRightMouseDown;
+    public Action aRKeyDown;
 
     public Vector2 Direction { get { return mDirection; } private set { Direction = mDirection; } }
 
@@ -41,6 +42,10 @@ public class PlayerInputController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.S))
         {
             --mDirection.y;
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            aRKeyDown?.Invoke();
         }
 
         //KeyUp

@@ -27,6 +27,8 @@ public class FollowCamera : MonoBehaviour
 
     private void ShakeCamera()
     {
-        mShake = new Vector2(Random.Range(-Weight.x, Weight.x), Random.Range(-Weight.y, Weight.y));
+        Vector2 weight = new Vector2(Random.Range(-Weight.x, Weight.x), Random.Range(-Weight.y, Weight.y));
+
+        mShake += weight;
     }
 }
