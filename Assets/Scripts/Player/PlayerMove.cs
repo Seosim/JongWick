@@ -21,7 +21,7 @@ public class PlayerMove : MonoBehaviour
     void Start()
     {
         mPlayerInputController = GameManager.gameManager.player.GetComponent<PlayerInputController>();
-        mPlayerInputController.RightMouseDown += Dash;
+        mPlayerInputController.aRightMouseDown += Dash;
 
         Debug.Assert(mPlayerInputController != null);
     }

@@ -11,8 +11,8 @@ public class PlayerInputController : MonoBehaviour
         Right,
         Wheel
     }
-
-    public Action RightMouseDown;
+    public Action aLeftMouseDown;
+    public Action aRightMouseDown;
 
     public Vector2 Direction { get { return mDirection; } private set { Direction = mDirection; } }
 
@@ -62,9 +62,13 @@ public class PlayerInputController : MonoBehaviour
         }
 
         //Mouse
+        if (Input.GetMouseButtonDown((int)eMouseType.Left))
+        {
+            aLeftMouseDown?.Invoke();
+        }
         if (Input.GetMouseButtonDown((int)eMouseType.Right))
         {
-            RightMouseDown?.Invoke();
+            aRightMouseDown?.Invoke();
         }
     }
 }
