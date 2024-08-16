@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9f04c8a1155b1a84994bad5fc724d5a2
+guid: ca2852cbe2b59854b8195e9117ac6042
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,7 +97,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: player_idle_0
+      name: Enemy1_idle_0
       rect:
         serializedVersion: 2
         x: 0
@@ -111,14 +111,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f717d8bc6f5f24f4b82c39bdea778eb2
-      internalID: 1319170156
+      spriteID: 3e7c45be0d97e124c997da3718c3985c
+      internalID: -2139637366
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_idle_1
+      name: Enemy1_idle_1
       rect:
         serializedVersion: 2
         x: 16
@@ -132,14 +132,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0f8f3a12c6efbb144a5480c6d2656991
-      internalID: 1866388293
+      spriteID: f02e94ec29986004f920e84fb941fe71
+      internalID: 1766210305
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_idle_2
+      name: Enemy1_idle_2
       rect:
         serializedVersion: 2
         x: 32
@@ -153,14 +153,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3bf259b05e9264a49a9704b67e3cb485
-      internalID: -200507808
+      spriteID: 5b0464130a2d7b24095c85e9a16bd543
+      internalID: -1488358157
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_idle_3
+      name: Enemy1_idle_3
       rect:
         serializedVersion: 2
         x: 48
@@ -174,14 +174,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6e754e74508bebd40933f35a85b25e5a
-      internalID: 647727211
+      spriteID: 3b361598d558c314c8f7bb4ffb352c68
+      internalID: -122675255
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_idle_4
+      name: Enemy1_idle_4
       rect:
         serializedVersion: 2
         x: 64
@@ -195,8 +195,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 503585a9f05349240bce17edc2765f99
-      internalID: -966555102
+      spriteID: d2c4cd6ed29875143ba6399e862c7230
+      internalID: 1397465363
       vertices: []
       indices: 
       edges: []
@@ -212,11 +212,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      player_idle_0: 1319170156
-      player_idle_1: 1866388293
-      player_idle_2: -200507808
-      player_idle_3: 647727211
-      player_idle_4: -966555102
+      Enemy1_idle_0: -2139637366
+      Enemy1_idle_1: 1766210305
+      Enemy1_idle_2: -1488358157
+      Enemy1_idle_3: -122675255
+      Enemy1_idle_4: 1397465363
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

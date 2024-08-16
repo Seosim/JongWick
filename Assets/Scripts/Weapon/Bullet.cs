@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
 {
     public float Power = 50.0f;
     public float ActiveRange = 100.0f;
+    public float Damage = 5.0f;
 
     private Rigidbody2D mRigidBody;
     private Vector2 mStartPosition;
@@ -32,5 +33,13 @@ public class Bullet : MonoBehaviour
         float distance = Vector2.Distance(transform.position, mStartPosition);
         if (ActiveRange < distance)
             gameObject.SetActive(false);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Enemy"))
+        {
+            gameObject.SetActive(false);
+        }
     }
 }
