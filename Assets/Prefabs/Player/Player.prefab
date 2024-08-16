@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3081267570898658709}
   - component: {fileID: 2515487550926223600}
   m_Layer: 0
-  m_Name: pistol0
+  m_Name: Pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 1221939225678682507}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.37, z: 0}
+  m_LocalPosition: {x: 0, y: -0.66, z: 0}
   m_LocalScale: {x: 0.85858, y: 0.85858, z: 0.85858}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 11
   m_Sprite: {fileID: 21300000, guid: a94f149128509b44482cb4b37e3286bd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -97,12 +97,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43181ab435d8ffa4b90803b10beac448, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Bullet: {fileID: 0}
+  m_Bullet: {fileID: 4847854659281711808, guid: 3b21ae6fbc607ca4a8935edf2bfef355, type: 3}
   MaxAmmo: 12
   ReloadTime: 3
-  MaxRecoil: 0.1
-  Recoil: 0
-  RecoilRecovery: 1
+  MaxRecoil: 0.2
+  Recoil: 0.05
+  RecoilRecovery: 3
   FireRate: 1
 --- !u!1 &3278361035646966015
 GameObject:
@@ -131,7 +131,7 @@ Transform:
   m_GameObject: {fileID: 3278361035646966015}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.14, y: -0.62, z: 0}
+  m_LocalPosition: {x: 0.14, y: -0.86, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4951,7 +4951,7 @@ GameObject:
   - component: {fileID: 9220249982056005040}
   - component: {fileID: 1028298416501936526}
   - component: {fileID: 8564021550822241583}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5016,7 +5016,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 10
   m_Sprite: {fileID: 1319170156, guid: 9f04c8a1155b1a84994bad5fc724d5a2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -5086,7 +5086,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 30
-  DashPower: 33
+  DashPower: 18
 --- !u!114 &9220249982056005040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5198,7 +5198,7 @@ Transform:
   m_GameObject: {fileID: 6237941128231651482}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.03, y: -0.4, z: 0}
+  m_LocalPosition: {x: -0.03, y: -0.68, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
