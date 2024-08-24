@@ -87,7 +87,7 @@ public class Enemy : MonoBehaviour
 #region Attack
     private INode.State FindPlayer()
     {
-        Vector2 playerPosition = GameManager.gameManager.player.transform.position;
+        Vector2 playerPosition = GameManager.Instance.player.transform.position;
         float distance = Vector2.Distance(playerPosition, transform.position);
 
         if(distance < DetectingRange)

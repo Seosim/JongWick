@@ -15,6 +15,9 @@ public class PlayerInputController : MonoBehaviour
     public Action aLeftMouseUp;
     public Action aRightMouseDown;
     public Action aRKeyDown;
+    public Action aGKeyDown;
+
+    public Action aTabKeyDown;
 
     public Vector2 Direction { get { return mDirection; } private set { Direction = mDirection; } }
 
@@ -48,6 +51,15 @@ public class PlayerInputController : MonoBehaviour
         {
             aRKeyDown?.Invoke();
         }
+        if(Input.GetKeyDown(KeyCode.G))
+        {
+            aGKeyDown?.Invoke();
+        }
+        if(Input.GetKeyDown(KeyCode.Tab))
+        {
+            aTabKeyDown?.Invoke();
+        }
+        
 
         //KeyUp
         if (Input.GetKeyUp(KeyCode.A))

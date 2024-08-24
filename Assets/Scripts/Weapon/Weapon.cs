@@ -28,9 +28,9 @@ public class Weapon : MonoBehaviour
 
     private void Start()
     {
-        GameManager.gameManager.player.GetComponent<PlayerInputController>().aLeftMouseDown += StartAttack;
-        GameManager.gameManager.player.GetComponent<PlayerInputController>().aLeftMouseUp += StopAttack;
-        GameManager.gameManager.player.GetComponent<PlayerInputController>().aRKeyDown += Reload;
+        GameManager.Instance.player.GetComponent<PlayerInputController>().aLeftMouseDown += StartAttack;
+        GameManager.Instance.player.GetComponent<PlayerInputController>().aLeftMouseUp += StopAttack;
+        GameManager.Instance.player.GetComponent<PlayerInputController>().aRKeyDown += Reload;
 
         mSpriteRenderer = GetComponent<SpriteRenderer>();
 

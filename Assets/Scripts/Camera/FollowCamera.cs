@@ -14,7 +14,7 @@ public class FollowCamera : MonoBehaviour
 
     private void Start()
     {
-        mPivot = GameManager.gameManager.player;
+        mPivot = GameManager.Instance.player;
         m_Weapon.aShoot += ShakeCamera;
     }
     void LateUpdate()

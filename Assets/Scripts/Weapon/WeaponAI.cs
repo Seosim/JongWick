@@ -47,7 +47,7 @@ public class WeaponAI : MonoBehaviour
         {
             if(mEnemy.bAttack)
             {
-                Vector2 playerPosition = GameManager.gameManager.player.transform.position;
+                Vector2 playerPosition = GameManager.Instance.player.transform.position;
                 mDirection = new Vector2(transform.position.x - playerPosition.x, transform.position.y - playerPosition.y);
 
                 float angle = Mathf.Atan2(mDirection.x, -mDirection.y) * Mathf.Rad2Deg;

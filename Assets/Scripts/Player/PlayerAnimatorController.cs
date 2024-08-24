@@ -12,8 +12,8 @@ public class PlayerAnimatorController : MonoBehaviour
     private void Start()
     {
         mAnimator = GetComponent<Animator>();
-        mSpriteRenderer = GameManager.gameManager.player.GetComponent<SpriteRenderer>();
-        mPlayerInputController = GameManager.gameManager.player.GetComponent<PlayerInputController>();
+        mSpriteRenderer = GameManager.Instance.player.GetComponent<SpriteRenderer>();
+        mPlayerInputController = GameManager.Instance.player.GetComponent<PlayerInputController>();
 
         Debug.Assert(mAnimator != null);
         Debug.Assert(mSpriteRenderer != null);

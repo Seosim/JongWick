@@ -10,7 +10,7 @@ public class PlayerEffect : MonoBehaviour
 
     void Start()
     {
-        mPlayerInputController = GameManager.gameManager.player.GetComponent<PlayerInputController>();
+        mPlayerInputController = GameManager.Instance.player.GetComponent<PlayerInputController>();
         Debug.Assert(mPlayerInputController != null);
     }
 
