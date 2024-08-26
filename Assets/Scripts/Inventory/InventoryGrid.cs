@@ -84,14 +84,11 @@ public class InventoryGrid : MonoBehaviour, IPointerClickHandler
                 {
                     RectTransform rectTransform = mSelectedItem.GetComponent<RectTransform>();
                     rectTransform.SetParent(mRectTransform);
-
-                    mInventoryItem[mGridIndex.x, mGridIndex.y] = inventoryItem;
                     inventoryItem.UpdateIndex(mGridIndex);
-                    Vector2 position = new Vector2(mGridIndex.x * Size + Size * inventoryItem.Data.Width / 2.0f, -(mGridIndex.y * Size + Size * inventoryItem.Data.Height / 2.0f));
-
-                    rectTransform.localPosition = position;
-
+                    mInventoryItem[mGridIndex.x, mGridIndex.y] = inventoryItem;
                     mSelectedItem = null;
+                    Vector2 position = new Vector2(mGridIndex.x * Size + Size * inventoryItem.Data.Width / 2.0f, -(mGridIndex.y * Size + Size * inventoryItem.Data.Height / 2.0f));
+                    rectTransform.localPosition = position;
                 }
             }
             else
@@ -104,7 +101,8 @@ public class InventoryGrid : MonoBehaviour, IPointerClickHandler
                     if(!AABB(mGridIndex, new int2(1,1), item.pIndex, new int2(item.Data.Width, item.Data.Height)))
                     {
                         mSelectedItem = item.gameObject;
-                        mInventoryItem[mGridIndex.x, mGridIndex.y] = null;
+                        mInventoryItem[item.pIndex.x, item.pIndex.y] = null;
+
                         RectTransform rectTransform = mSelectedItem.GetComponent<RectTransform>();
                         rectTransform.SetParent(mRectTransform.parent);
                         break;
