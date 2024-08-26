@@ -5,10 +5,10 @@ using static UnityEditor.Timeline.Actions.MenuPriority;
 
 public class DropItem : MonoBehaviour
 {
-    public Sprite pSprite { get { return mSpriteRenderer.sprite; } set { mSpriteRenderer.sprite = value; } }
-    public InvenItem.eSize pSize { get { return m_Size; } private set { m_Size = value; } }
+    public ItemData Data;
 
-    [SerializeField] private InvenItem.eSize m_Size = InvenItem.eSize.OneXOne;
+    public Sprite pSprite { get { return mSpriteRenderer.sprite; } set { mSpriteRenderer.sprite = value; } }
+
 
     private SpriteRenderer mSpriteRenderer;
     private bool mbActive = false;
@@ -42,11 +42,12 @@ public class DropItem : MonoBehaviour
 
     private void GetItem()
     {
-        if(mbActive)
+        if (mbActive)
         {
+            GameManager.Instance.inventory.PlaceItem(this);
             //TODO: 인벤토리에 아이템이 들어가게 코드 수정
-            bool bAdd = !GameManager.Instance.inventory.AddItem(this);
-            gameObject.SetActive(bAdd);
+            //bool bAdd = !GameManager.Instance.inventory.AddItem(this);
+            //gameObject.SetActive(bAdd);
         }
     }
 }

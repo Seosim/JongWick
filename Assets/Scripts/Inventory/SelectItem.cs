@@ -6,8 +6,6 @@ public class SelectItem : MonoBehaviour
 {
     public Sprite pSprite { get { return mSpriteRenderer.sprite; } set { mSpriteRenderer.sprite = value; } }
 
-    public InvenItem.eSize Size = InvenItem.eSize.None;
-
     private SpriteRenderer mSpriteRenderer;
 
     private void Awake()

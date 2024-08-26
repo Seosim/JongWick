@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public GameObject player;
-    public Inventory inventory;
+    public InventoryGrid inventory;
 
     
 
