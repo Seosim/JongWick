@@ -32,15 +32,8 @@ public class InventoryGrid : MonoBehaviour, IPointerClickHandler
     {
         mRectTransform.sizeDelta = new Vector2(Width * Size, Height * Size);
 
-        //GameManager.Instance.player.GetComponent<PlayerInputController>().aLeftMouseDown += GetGridIndex;
-
-        //InventoryItem item = Instantiate(m_ItemPrefab).GetComponent<InventoryItem>();
-        //if(!PlaceItem(item, 5, 0))
-        //    Destroy(item);
-
-        //item = Instantiate(m_ItemPrefab).GetComponent<InventoryItem>();
-        //if (!PlaceItem(item, 7, 0))
-        //    Destroy(item);
+        PlayerInputController input = GameManager.Instance.player.GetComponent<PlayerInputController>();
+        input.aRKeyDown += RotateSelectedItem;
     }
 
     private void Update()
@@ -48,10 +41,10 @@ public class InventoryGrid : MonoBehaviour, IPointerClickHandler
         if(mSelectedItem != null)
         {
             RectTransform rectTransform = mSelectedItem.GetComponent<RectTransform>();
-            ItemData itemData = mSelectedItem.GetComponent<InventoryItem>().Data;
+            InventoryItem itemData = mSelectedItem.GetComponent<InventoryItem>();
             Vector2 mousePosition = Input.mousePosition - new Vector3(Screen.width / 2, Screen.height / 2, 0.0f);
 
-            Vector2 pivot = new Vector2(Size * itemData.Width / 4, -Size * itemData.Height / 4);
+            Vector2 pivot = new Vector2(Size * itemData.pSize.x / 4, -Size * itemData.pSize.y / 4);
 
             rectTransform.anchoredPosition = mousePosition + pivot;
         }
@@ -73,7 +66,7 @@ public class InventoryGrid : MonoBehaviour, IPointerClickHandler
                     if (item == null)
                         continue;
 
-                    if (!AABB(mGridIndex, new int2(inventoryItem.Data.Width, inventoryItem.Data.Height), item.pIndex, new int2(item.Data.Width, item.Data.Height)))
+                    if (!AABB(mGridIndex, inventoryItem.pSize, item.pIndex, new int2(item.pSize.x, item.pSize.y)))
                     {
                         bEmpty = false;
                         break;
@@ -87,7 +80,7 @@ public class InventoryGrid : MonoBehaviour, IPointerClickHandler
                     inventoryItem.UpdateIndex(mGridIndex);
                     mInventoryItem[mGridIndex.x, mGridIndex.y] = inventoryItem;
                     mSelectedItem = null;
-                    Vector2 position = new Vector2(mGridIndex.x * Size + Size * inventoryItem.Data.Width / 2.0f, -(mGridIndex.y * Size + Size * inventoryItem.Data.Height / 2.0f));
+                    Vector2 position = new Vector2(mGridIndex.x * Size + Size * inventoryItem.pSize.x / 2.0f, -(mGridIndex.y * Size + Size * inventoryItem.pSize.y / 2.0f));
                     rectTransform.localPosition = position;
                 }
             }
@@ -98,7 +91,7 @@ public class InventoryGrid : MonoBehaviour, IPointerClickHandler
                     if(item == null)
                         continue;   
 
-                    if(!AABB(mGridIndex, new int2(1,1), item.pIndex, new int2(item.Data.Width, item.Data.Height)))
+                    if(!AABB(mGridIndex, new int2(1,1), item.pIndex, item.pSize))
                     {
                         mSelectedItem = item.gameObject;
                         mInventoryItem[item.pIndex.x, item.pIndex.y] = null;
@@ -127,27 +120,62 @@ public class InventoryGrid : MonoBehaviour, IPointerClickHandler
 
     public bool PlaceItem(DropItem dropItem)
     {
-        int2 tileIndex = FindEmptyTile(dropItem.Data);
 
+        int2 tileIndex = FindEmptyTile(dropItem.Data);
+        bool bRotate = false;
         if (tileIndex.x == -1)
-            return false;
+        {
+            tileIndex = FindEmptyTile(dropItem.Data, true);
+
+            if (tileIndex.x == -1)
+                return false;
+            else
+            {
+                bRotate = true;
+            }
+        }
 
         InventoryItem item = Instantiate(m_ItemPrefab).GetComponent<InventoryItem>();
+        RectTransform rectTransform = item.GetComponent<RectTransform>();
         item.Data = dropItem.Data;
 
-        RectTransform rectTransform = item.GetComponent<RectTransform>();
+        if (bRotate)
+        {
+            item.mbRotate = true;
+            rectTransform.Rotate(0, 0, 90);
+        }
+
         rectTransform.SetParent(mRectTransform);
         mInventoryItem[tileIndex.x, tileIndex.y] = item;
         rectTransform.sizeDelta = new Vector2(Mathf.Pow(item.Data.Width, 1.1f), Mathf.Pow(item.Data.Height, 1.1f));
 
-        Vector2 position = new Vector2(tileIndex.x * Size + Size * item.Data.Width / 2.0f, -(tileIndex.y * Size + Size * item.Data.Height / 2.0f));
+        Vector2 position = new Vector2(tileIndex.x * Size + Size * item.pSize.x / 2.0f, -(tileIndex.y * Size + Size * item.pSize.y / 2.0f));
         rectTransform.localPosition = position;
 
         item.gameObject.GetComponent<Image>().sprite = item.Data.ItemSprite;
 
         item.UpdateData(item.Data);
         item.UpdateIndex(tileIndex);
+
         return true;
+    }
+
+    private void RotateSelectedItem()
+    {
+        if (mSelectedItem == null)
+            return;
+
+        InventoryItem inventoryItem = mSelectedItem.GetComponent<InventoryItem>();
+        RectTransform rectTransform = mSelectedItem.GetComponent<RectTransform>();
+
+        //int temp = inventoryItem.Data.Width;
+        //inventoryItem.Data.Width = inventoryItem.Data.Height;
+        //inventoryItem.Data.Height = temp;
+        inventoryItem.mbRotate = !inventoryItem.mbRotate;
+        rectTransform.Rotate(0, 0, 90);
+
+        //Vector2 position = new Vector2(mGridIndex.x * Size + Size * inventoryItem.Data.Width / 2.0f, -(mGridIndex.y * Size + Size * inventoryItem.Data.Height / 2.0f));
+        //rectTransform.localPosition = position;
     }
 
     private void GetGridIndex()
@@ -161,7 +189,7 @@ public class InventoryGrid : MonoBehaviour, IPointerClickHandler
 
     }
 
-    private int2 FindEmptyTile(ItemData data)
+    private int2 FindEmptyTile(ItemData data, bool bRotate = false)
     {
         List<InventoryItem> items = new List<InventoryItem>();
 
@@ -179,10 +207,17 @@ public class InventoryGrid : MonoBehaviour, IPointerClickHandler
 
         int2 index = int2.zero;
         int2 size = new int2(data.Width, data.Height);
-        //x,y: Grid's Data, i,j: DropItem's Data
-        for (int y = 0; y < Height - data.Height + 1; ++y)
+        if(bRotate)
         {
-            for (int x = 0; x < Width - data.Width + 1; ++x)
+            int temp = size.x;
+            size.x = size.y;
+            size.y = temp;
+        }
+
+        //x,y: Grid's Data, i,j: DropItem's Data
+        for (int y = 0; y < Height - size.y + 1; ++y)
+        {
+            for (int x = 0; x < Width - size.x + 1; ++x)
             {
                 index.x = x;
                 index.y = y;
@@ -194,7 +229,7 @@ public class InventoryGrid : MonoBehaviour, IPointerClickHandler
                     if (invenItem == null)
                         continue;
 
-                    int2 invenItemSize = new(invenItem.Data.Width, invenItem.Data.Height);
+                    int2 invenItemSize = invenItem.pSize;
                     if (!AABB(index, size, invenItem.pIndex, invenItemSize))
                     {
                         bEmpty = false;

@@ -7,8 +7,16 @@ using UnityEngine.EventSystems;
 public class InventoryItem : MonoBehaviour, IPointerClickHandler
 {
     public int2 pIndex { get { return mIndex; } private set {  mIndex = value; } }
+    public int2 pSize { get {
+            if (!mbRotate)
+                return new int2(Data.Width, Data.Height);
+            else
+                return new int2(Data.Height, Data.Width);
+                }
+    }
 
     public ItemData Data;
+    public bool mbRotate = false;
 
     private int2 mIndex;
 
