@@ -73,7 +73,10 @@ public class InventoryGrid : MonoBehaviour, IPointerClickHandler
                     }
                 }
 
-                if (bEmpty)
+                bool outX = mGridIndex.x + inventoryItem.pSize.x <= Width;
+                bool outY = mGridIndex.y + inventoryItem.pSize.y <= Height;
+
+                if (bEmpty && outX && outY)
                 {
                     RectTransform rectTransform = mSelectedItem.GetComponent<RectTransform>();
                     rectTransform.SetParent(mRectTransform);
