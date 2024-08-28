@@ -7,6 +7,8 @@ public class Weapon : MonoBehaviour
 {
     public Action aShoot;
 
+    public float pAngle { get { return mAngle; } }
+
     [SerializeField] private GameObject m_Bullet;
     public int MaxAmmo = 12;
     public float ReloadTime = 3.0f;
@@ -25,6 +27,7 @@ public class Weapon : MonoBehaviour
     private float mFireRate = 0.0f;
 
     private bool mbAttack = false;
+    private float mAngle = 0.0f;
 
     private void Start()
     {
@@ -51,6 +54,7 @@ public class Weapon : MonoBehaviour
             Vector2 screenPoint = Camera.main.WorldToScreenPoint(transform.position);
             mDirection = new Vector2(screenPoint.x - Input.mousePosition.x, screenPoint.y - Input.mousePosition.y);
             float angle = Mathf.Atan2(mDirection.x, -mDirection.y) * Mathf.Rad2Deg;
+            mAngle = angle;
             mSpriteRenderer.flipY = angle > 0.0f;
             angle += 90.0f;
             transform.rotation = Quaternion.Euler(0.0f, 0.0f, angle);
