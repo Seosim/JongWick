@@ -15,6 +15,7 @@ public class InventoryGrid : MonoBehaviour, IPointerClickHandler
     public int Size;
 
     [SerializeField] private GameObject m_ItemPrefab;
+    [SerializeField] private GameObject m_DropItemPrefab;
 
     private InventoryItem[,] mInventoryItem;
 
@@ -50,6 +51,19 @@ public class InventoryGrid : MonoBehaviour, IPointerClickHandler
         }
     }
 
+    private void OnDisable()
+    {
+        if(mSelectedItem != null)
+        {
+            GameObject dropItem = Instantiate(m_DropItemPrefab, GameManager.Instance.player.transform.position, Quaternion.identity);
+
+            dropItem.GetComponent<DropItem>().Init(mSelectedItem.GetComponent<InventoryItem>().Data);
+
+            Destroy(mSelectedItem);
+            mSelectedItem = null;
+        }
+
+    }
 
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -150,6 +164,7 @@ public class InventoryGrid : MonoBehaviour, IPointerClickHandler
 
         rectTransform.SetParent(mRectTransform);
         mInventoryItem[tileIndex.x, tileIndex.y] = item;
+
         rectTransform.sizeDelta = new Vector2(Mathf.Pow(item.Data.Width, 1.1f), Mathf.Pow(item.Data.Height, 1.1f));
 
         Vector2 position = new Vector2(tileIndex.x * Size + Size * item.pSize.x / 2.0f, -(tileIndex.y * Size + Size * item.pSize.y / 2.0f));

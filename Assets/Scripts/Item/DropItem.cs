@@ -13,6 +13,12 @@ public class DropItem : MonoBehaviour
     private SpriteRenderer mSpriteRenderer;
     private bool mbActive = false;
 
+    public void Init(ItemData data)
+    {
+        Data = data;
+        mSpriteRenderer.sprite = data.ItemSprite;
+    }
+
     private void Awake()
     {
         mSpriteRenderer = GetComponent<SpriteRenderer>();
