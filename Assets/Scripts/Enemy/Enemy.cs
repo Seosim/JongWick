@@ -16,6 +16,8 @@ public class Enemy : MonoBehaviour
     public float Speed = 5.0f;
     public float MaxHp = 10.0f;
 
+    public LayerMask ObjectLayer;
+
     public bool bAttack { get { return !mbWalk; } private set { } }
 
     private Rigidbody2D mRigidBody;
@@ -92,7 +94,11 @@ public class Enemy : MonoBehaviour
 
         if(distance < DetectingRange)
         {
-            return INode.State.Success;
+            Vector3 direction = (GameManager.Instance.player.transform.position - transform.position).normalized;
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, DetectingRange, ObjectLayer);
+
+            if(hit.collider == null)
+                return INode.State.Success;
         }
 
         return INode.State.Failure;
